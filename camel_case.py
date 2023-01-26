@@ -1,16 +1,17 @@
-sentence = input('Enter a sentence: ')
+def camelcase(sentence):
+    """ Convert sentence to camelCase, for example, "Display all books"
+    is converted to "displayAllBooks" """
+    title_case = sentence.title() # Uppercase first letter of each word
+    upper_camel_cased = title_case.replace(' ', '') # remove spaces
+    # Lowercase first letter, join with rest of string
+    # Slices don't produce index out of bounds errors.
+    # So this still works on empty strings, strings of length 1
+    return upper_camel_cased[0:1].lower() + upper_camel_cased[1:]
 
-# split the sentence into a list of words
-words = sentence.split()
+def main():
+    sentence = input('Enter your sentence: ')
+    output = camelcase(sentence)
+    print(output)
 
-# convert the first word to lowercase
-words[0] = words[0].lower()
-
-# loop through the rest of the words and capitalize the first letter
-for i in range(1, len(words)):
-    words[i] = words[i].capitalize()
-
-# join the words together to form the camel case string
-camel_case = ''.join(words)
-
-print(camel_case)
+if __name__ == '__main__':
+    main()
